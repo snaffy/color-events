@@ -1,5 +1,5 @@
 ## color-events 
-###How to run ?  
+### How to run ?  
 To properly run __color-events__ microservices as well as to test it, __RabbitMQ__ is necessary. It should be run via docker image.
 To do so, execute the following command: 
 
@@ -17,7 +17,7 @@ With __RabbitMQ__ running, we can run:
 ./gradlew build 
 ./gradlew run
 ```
-###How to run performance tests?  
+### How to run performance tests?  
 
 Performance of this microservice could be tested via separate application [color-events-performance-test](https://github.com/snaffy/color-events-performance-test)
 

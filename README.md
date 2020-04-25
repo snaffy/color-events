@@ -21,4 +21,10 @@ With __RabbitMQ__ running, we can run:
 
 Performance of this microservice could be tested via separate application [color-events-performance-test](https://github.com/snaffy/color-events-performance-test)
 
+To perform such a test, run the __color-events__ microservice and then run tests from the project: __color-events-performance-test__ via command:
+``
+./gradlew clean test
+``
+Results from executed tests will be placed in the __/target__ directory
+
 

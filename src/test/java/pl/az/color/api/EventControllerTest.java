@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @MicronautTest
 @Tag("functional")
-class ColorControllerTest {
+class EventControllerTest {
 
     @Inject
     @Client("/colors")

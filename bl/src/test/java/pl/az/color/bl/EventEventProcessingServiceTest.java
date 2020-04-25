@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class ColorEventProcessingServiceTest {
+class EventEventProcessingServiceTest {
 
     @Mock
     private ColorEventPublisherService colorEventPublisherService;

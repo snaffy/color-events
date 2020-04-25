@@ -17,9 +17,9 @@ class EventPublisherService {
     }
 
     void publish(List<PotentialEvent> potentialEvents) {
-        for (PotentialEvent event : potentialEvents) {
-            EventType eventType = eventMapping.getEventType(event.getColor());
+        potentialEvents.forEach(potentialEvent -> {
+            EventType eventType = eventMapping.getEventType(potentialEvent.getColor());
             publisherClient.publish(new Event(eventType));
-        }
+        });
     }
 }

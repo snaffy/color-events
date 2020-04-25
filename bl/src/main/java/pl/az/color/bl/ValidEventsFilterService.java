@@ -13,7 +13,7 @@ class ValidEventsFilterService {
     List<PotentialEvent> filter(List<PotentialEvent> events) {
         InvalidEventExcluderComposite invalidEventExcluderComposite = new InvalidEventExcluderComposite();
         invalidEventExcluderComposite.addExcluder(new InvalidEventExcluder(validColors));
-        invalidEventExcluderComposite.addExcluder(new NonPublishEventExcluder());
+        invalidEventExcluderComposite.addExcluder(new NonPublishableEventExcluder());
 
         return invalidEventExcluderComposite.exclude(events);
     }

@@ -11,12 +11,12 @@ import static org.hamcrest.Matchers.hasSize;
 
 class NonShouldBePublishEventExcluderTest {
 
-    private final NonPublishEventExcluder nonPublishEventExcluder = new NonPublishEventExcluder();
+    private final NonPublishableEventExcluder nonPublishableEventExcluder = new NonPublishableEventExcluder();
     private List<PotentialEvent> expectedPotentialEventsAfterExclude = new ArrayList<>();
     private PotentialEventAssembler potentialEventAssembler;
 
     @Test
-    void exludeEventsWitchShouldNotBePublished() {
+    void exludeEventsWhichShouldNotBePublished() {
         //given
         events()
                 .add(new PotentialEvent(true, "255,0,0"))
@@ -36,7 +36,7 @@ class NonShouldBePublishEventExcluderTest {
     }
 
     private void excludeEventsWhichShouldNotBePublished() {
-        expectedPotentialEventsAfterExclude = nonPublishEventExcluder.exclude(potentialEventAssembler.getPotentialEventsUnderTest());
+        expectedPotentialEventsAfterExclude = nonPublishableEventExcluder.exclude(potentialEventAssembler.getPotentialEventsUnderTest());
     }
 
     private PotentialEventAssembler events() {

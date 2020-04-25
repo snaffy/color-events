@@ -1,14 +1,14 @@
 package pl.az.color.api;
 
-import lombok.*;
-
-import java.io.Serializable;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Setter
-public class ColorResponseDTO implements Serializable {
+public class ColorResponseDTO {
 
     private boolean published;
 

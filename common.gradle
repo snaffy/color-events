@@ -1,0 +1,39 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+configurations.all {
+    resolutionStrategy {
+        failOnVersionConflict()
+        force 'io.micronaut:micronaut-inject:' + micronautVersion
+        force 'io.micronaut:micronaut-validation:'+ micronautVersion
+        force 'org.slf4j:slf4j-api:1.7.26'
+        force 'org.reactivestreams:reactive-streams:1.0.3'
+        force 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+        force 'org.junit.platform:junit-platform-runner:1.6.0'
+        force 'ch.qos.logback:logback-classic:1.2.3'
+        force 'ch.qos.logback:logback-core:1.2.3'
+
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_13
+    targetCompatibility = JavaVersion.VERSION_13
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://jcenter.bintray.com" }
+    mavenLocal()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:' + lombokVersion
+    annotationProcessor "org.projectlombok:lombok:" + lombokVersion
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.6.0"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.6.0"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.6.0"
+    testCompile group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
+
+}

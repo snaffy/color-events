@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: awesome.task
+---
+testFramework: junit
+sourceLanguage: java

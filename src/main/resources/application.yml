@@ -1,0 +1,9 @@
+micronaut:
+  application:
+    name: awesome-task
+rabbitmq:
+  uri: amqp://localhost:5672
+mappping:
+  red: "255,0,0"
+  green: "0,255,0"
+  blue: "0,0,255"

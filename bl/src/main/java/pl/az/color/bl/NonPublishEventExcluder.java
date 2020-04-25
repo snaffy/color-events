@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 class NonPublishEventExcluder implements Excluder {
 
     @Override
-    public List<ColorEvent> exclude(List<ColorEvent> events) {
+    public List<PotentialEvent> exclude(List<PotentialEvent> events) {
         return events.stream()
-                .filter(ColorEvent::isPublish)
+                .filter(PotentialEvent::isPublish)
                 .collect(Collectors.toList());
     }
 }

@@ -12,17 +12,17 @@ import static org.hamcrest.Matchers.hasSize;
 class NonShouldBePublishEventExcluderTest {
 
     private final NonPublishEventExcluder nonPublishEventExcluder = new NonPublishEventExcluder();
-    private List<ColorEvent> expectedColorEventsAfterExclude = new ArrayList<>();
-    private ColorAssembler colorAssembler;
+    private List<PotentialEvent> expectedPotentialEventsAfterExclude = new ArrayList<>();
+    private PotentialEventAssembler potentialEventAssembler;
 
     @Test
     void exludeEventsWitchShouldNotBePublished() {
         //given
-        colorEvents()
-                .add(new ColorEvent(true, "255,0,0"))
-                .add(new ColorEvent(false, "255,0,0"))
-                .add(new ColorEvent(true, "255,0,0"))
-                .add(new ColorEvent(true, "255,0,0"));
+        events()
+                .add(new PotentialEvent(true, "255,0,0"))
+                .add(new PotentialEvent(false, "255,0,0"))
+                .add(new PotentialEvent(true, "255,0,0"))
+                .add(new PotentialEvent(true, "255,0,0"));
 
         //when
         excludeEventsWhichShouldNotBePublished();
@@ -32,16 +32,16 @@ class NonShouldBePublishEventExcluderTest {
 
 
     private void expectedColorEventsIsSize(int size) {
-        assertThat(expectedColorEventsAfterExclude, hasSize(equalTo(size)));
+        assertThat(expectedPotentialEventsAfterExclude, hasSize(equalTo(size)));
     }
 
     private void excludeEventsWhichShouldNotBePublished() {
-        expectedColorEventsAfterExclude = nonPublishEventExcluder.exclude(colorAssembler.getColorEventsUnderTest());
+        expectedPotentialEventsAfterExclude = nonPublishEventExcluder.exclude(potentialEventAssembler.getPotentialEventsUnderTest());
     }
 
-    private ColorAssembler colorEvents() {
-        colorAssembler = new ColorAssembler();
-        return colorAssembler;
+    private PotentialEventAssembler events() {
+        potentialEventAssembler = new PotentialEventAssembler();
+        return potentialEventAssembler;
     }
 
 }

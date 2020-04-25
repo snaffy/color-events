@@ -7,22 +7,22 @@ import java.util.List;
 @Singleton
 public class ColorEventProcessingService {
 
-    private final ColorEventPublisherService colorEventPublisherService;
+    private final EventPublisherService eventPublisherService;
     private final ValidEventsFilterService validEventsFilterService;
 
     @Inject
-    public ColorEventProcessingService(ColorEventPublisherService colorEventPublisherService, ValidEventsFilterService validEventsFilterService) {
-        this.colorEventPublisherService = colorEventPublisherService;
+    public ColorEventProcessingService(EventPublisherService eventPublisherService, ValidEventsFilterService validEventsFilterService) {
+        this.eventPublisherService = eventPublisherService;
         this.validEventsFilterService = validEventsFilterService;
     }
 
-    public ProcessResult process(List<ColorEvent> events) {
-        List<ColorEvent> validEvents = validEventsFilterService.filter(events);
+    public ProcessResult process(List<PotentialEvent> events) {
+        List<PotentialEvent> validEvents = validEventsFilterService.filter(events);
 
         if (validEvents.isEmpty())
             return ProcessResult.nothingToProcess();
 
-        colorEventPublisherService.publish(validEvents);
+        eventPublisherService.publish(validEvents);
         return ProcessResult.valid();
     }
 

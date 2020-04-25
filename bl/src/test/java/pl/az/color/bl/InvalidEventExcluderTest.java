@@ -14,24 +14,24 @@ import static org.hamcrest.Matchers.*;
 
 class InvalidEventExcluderTest {
 
-    private ColorAssembler colorAssembler;
+    private PotentialEventAssembler potentialEventAssembler;
     private ValidColors validColors;
-    private List<ColorEvent> colorEventsAfterExclude;
+    private List<PotentialEvent> potentialEventsAfterExclude;
 
     @Test
     void exludeEventsWithInvalidColorTest1() {
         //given
         validColors("255,0,0", "0,255,0", "0,0,255");
-        colorEvents()
-                .add(new ColorEvent(true, " "))
-                .add(new ColorEvent(true, "\t"))
-                .add(new ColorEvent(true, "\n"))
-                .add(new ColorEvent(true, "asdasd"))
-                .add(new ColorEvent(true, "-12"))
-                .add(new ColorEvent(true, null))
-                .add(new ColorEvent(true, "255,0,0"))
-                .add(new ColorEvent(true, "0,255,0"))
-                .add(new ColorEvent(true, "0,0,255"));
+        events()
+                .add(new PotentialEvent(true, " "))
+                .add(new PotentialEvent(true, "\t"))
+                .add(new PotentialEvent(true, "\n"))
+                .add(new PotentialEvent(true, "asdasd"))
+                .add(new PotentialEvent(true, "-12"))
+                .add(new PotentialEvent(true, null))
+                .add(new PotentialEvent(true, "255,0,0"))
+                .add(new PotentialEvent(true, "0,255,0"))
+                .add(new PotentialEvent(true, "0,0,255"));
         //when
         excludeInvalidColorEvents();
         //then
@@ -43,12 +43,12 @@ class InvalidEventExcluderTest {
     void exludeEventsWithInvalidColorTest2() {
         //given
         validColors("255,0,0", "0,255,0", "0,0,255");
-        colorEvents()
-                .add(new ColorEvent(true, "255,0,0"))
-                .add(new ColorEvent(true, "255,0,0"))
-                .add(new ColorEvent(true, "255,0,0"))
-                .add(new ColorEvent(true, "0,255,0"))
-                .add(new ColorEvent(true, "0,0,255"));
+        events()
+                .add(new PotentialEvent(true, "255,0,0"))
+                .add(new PotentialEvent(true, "255,0,0"))
+                .add(new PotentialEvent(true, "255,0,0"))
+                .add(new PotentialEvent(true, "0,255,0"))
+                .add(new PotentialEvent(true, "0,0,255"));
         //when
         excludeInvalidColorEvents();
         //then
@@ -60,7 +60,7 @@ class InvalidEventExcluderTest {
     void exludeEventsWithInvalidColorTest3() {
         //given
         validColors("255,0,0", "0,255,0", "0,0,255");
-        colorEvents();
+        events();
         //when
         excludeInvalidColorEvents();
         //then
@@ -69,17 +69,17 @@ class InvalidEventExcluderTest {
     }
 
     private void expectedColorEventsIsSize(int size) {
-        assertThat(colorEventsAfterExclude, hasSize(equalTo(size)));
+        assertThat(potentialEventsAfterExclude, hasSize(equalTo(size)));
     }
 
     private void expectedColorEventsAfterExlucde(String... expectedColorEvents) {
         Arrays.stream(expectedColorEvents).forEach(color -> {
-            assertThat(colorEventsAfterExclude, hasItem(new ColorEvent(true, color)));
+            assertThat(potentialEventsAfterExclude, hasItem(new PotentialEvent(true, color)));
         });
     }
 
     private void excludeInvalidColorEvents() {
-        colorEventsAfterExclude = new InvalidEventExcluder(validColors).exclude(colorAssembler.getColorEventsUnderTest());
+        potentialEventsAfterExclude = new InvalidEventExcluder(validColors).exclude(potentialEventAssembler.getPotentialEventsUnderTest());
     }
 
     private void validColors(String... validColors) {
@@ -87,8 +87,8 @@ class InvalidEventExcluderTest {
         this.validColors = new ValidColors(colors);
     }
 
-    private ColorAssembler colorEvents() {
-        colorAssembler = new ColorAssembler();
-        return colorAssembler;
+    private PotentialEventAssembler events() {
+        potentialEventAssembler = new PotentialEventAssembler();
+        return potentialEventAssembler;
     }
 }

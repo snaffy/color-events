@@ -10,7 +10,7 @@ class ValidEventsFilterService {
     @Inject
     private ValidColors validColors;
 
-    List<ColorEvent> filter(List<ColorEvent> events) {
+    List<PotentialEvent> filter(List<PotentialEvent> events) {
         InvalidEventExcluderComposite invalidEventExcluderComposite = new InvalidEventExcluderComposite();
         invalidEventExcluderComposite.addExcluder(new InvalidEventExcluder(validColors));
         invalidEventExcluderComposite.addExcluder(new NonPublishEventExcluder());

@@ -6,7 +6,7 @@ import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Consumes;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Post;
-import pl.az.color.bl.ColorEvent;
+import pl.az.color.bl.PotentialEvent;
 import pl.az.color.bl.ColorEventProcessingService;
 import pl.az.color.bl.ProcessResult;
 
@@ -37,10 +37,10 @@ public class ColorController {
         return new ColorResponseDTO(result.isValid());
     }
 
-    private List<ColorEvent> createColorEvents(List<ColorDTO> colorRequests) {
+    private List<PotentialEvent> createColorEvents(List<ColorDTO> colorRequests) {
         return colorRequests
                 .stream()
-                .map(colorDTO -> new ColorEvent(colorDTO.isPublish(), colorDTO.getColor()))
+                .map(colorDTO -> new PotentialEvent(colorDTO.isPublish(), colorDTO.getColor()))
                 .collect(Collectors.toList());
     }
 }

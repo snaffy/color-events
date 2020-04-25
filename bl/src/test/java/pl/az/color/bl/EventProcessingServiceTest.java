@@ -14,16 +14,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class EventEventProcessingServiceTest {
+class EventProcessingServiceTest {
 
     @Mock
-    private ColorEventPublisherService colorEventPublisherService;
+    private EventPublisherService eventPublisherService;
     @Mock
     private ValidEventsFilterService validEventsFilterService;
     @InjectMocks
     private ColorEventProcessingService colorEventProcessingService;
     private ProcessResult result;
-    private List<ColorEvent> events;
+    private List<PotentialEvent> events;
 
     @Test
     void processEventTest1() {
@@ -60,7 +60,7 @@ class EventEventProcessingServiceTest {
     }
 
     private void eventsWillBePublishedTimes(int invocationTimes) {
-        verify(colorEventPublisherService, times(invocationTimes)).publish(events);
+        verify(eventPublisherService, times(invocationTimes)).publish(events);
     }
 
     private void processEvents() {
@@ -68,7 +68,7 @@ class EventEventProcessingServiceTest {
     }
 
     private void anyValidEvents() {
-        events = List.of(new ColorEvent(true, ""), new ColorEvent(true, ""));
+        events = List.of(new PotentialEvent(true, ""), new PotentialEvent(true, ""));
         when(validEventsFilterService.filter(events)).thenReturn(events);
     }
 

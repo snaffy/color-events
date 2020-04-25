@@ -15,13 +15,13 @@ class InvalidEventExcluder implements Excluder {
     private final ValidColors validColors;
 
     @Override
-    public List<ColorEvent> exclude(List<ColorEvent> events) {
+    public List<PotentialEvent> exclude(List<PotentialEvent> events) {
         return events.stream()
                 .filter(this::filterByValidColors)
                 .collect(Collectors.toList());
     }
 
-    private boolean filterByValidColors(ColorEvent event) {
+    private boolean filterByValidColors(PotentialEvent event) {
         if (isColorValid(event))
             return true;
         else {
@@ -30,8 +30,8 @@ class InvalidEventExcluder implements Excluder {
         }
     }
 
-    private boolean isColorValid(ColorEvent colorEvent) {
+    private boolean isColorValid(PotentialEvent potentialEvent) {
         Set<String> validColors = this.validColors.getValidColors();
-        return validColors.contains(colorEvent.getColor());
+        return validColors.contains(potentialEvent.getColor());
     }
 }

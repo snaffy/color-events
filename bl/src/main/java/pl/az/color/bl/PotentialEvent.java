@@ -5,7 +5,7 @@ import lombok.Value;
 
 @Value
 @EqualsAndHashCode
-public class ColorEvent {
+public class PotentialEvent {
 
     boolean publish;
     String color;

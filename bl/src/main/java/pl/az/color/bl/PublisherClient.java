@@ -5,7 +5,7 @@ import io.micronaut.configuration.rabbitmq.annotation.RabbitClient;
 import io.micronaut.configuration.rabbitmq.annotation.RabbitProperty;
 
 @RabbitClient("colors-exchange")
-public interface ColorPublisherClient {
+public interface PublisherClient {
 
     @Binding(value = "rgb")
     @RabbitProperty(name = "contentType", value = "application/json")

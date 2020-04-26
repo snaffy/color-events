@@ -27,4 +27,13 @@ To perform such a test, run the __color-events__ microservice and then run tests
 ``
 Results from executed tests will be placed in the __/target__ directory
 
+Assuming that the performance testing framework does not have to be strictly Java-based, a simpler tool will be [Siege] (https://github.com/JoeDog/siege), it can also be used as a docker container https://hub.docker.com/r/yokogawa/siege/:
 
+Sample performance tests:
+```
+docker run yokogawa/siege -c 5 -r 1 "http://host.docker.internal:8080/colors/publish POST [{\"publish\": true,\"color\": \"255,0,0\"}]" --content-type "application/json"
+
+docker run yokogawa/siege -c 20 -r 10 "http://host.docker.internal:8080/colors/publish POST [{\"publish\": true,\"color\": \"255,0,0\"}]" --content-type "application/json"
+
+docker run yokogawa/siege -c 20 -r 5 "http://host.docker.internal:8080/colors/publish POST [{\"publish\": true,\"color\": \"255,0,0\"},{\"publish\": true,\"color\": \"0,255,0\"},{\"publish\": true,\"color\": \"0,0,255\"},{\"publish\": true,\"color\": null}]" --content-type "application/json"
+```

@@ -37,3 +37,25 @@ docker run yokogawa/siege -c 20 -r 10 "http://host.docker.internal:8080/colors/p
 
 docker run yokogawa/siege -c 20 -r 5 "http://host.docker.internal:8080/colors/publish POST [{\"publish\": true,\"color\": \"255,0,0\"},{\"publish\": true,\"color\": \"0,255,0\"},{\"publish\": true,\"color\": \"0,0,255\"},{\"publish\": true,\"color\": null}]" --content-type "application/json"
 ```
+
+Sample result:
+```
+docker run yokogawa/siege -c 20 -r 5  "http://host.docker.internal:8080/colors/publish POST [{\"publish\": true,\"color\": null}]" --content-type "application/json"
+New configuration template added to /root/.siege
+Run siege -C to view the current settings in that file
+** SIEGE 4.0.4
+** Preparing 20 concurrent users for battle.
+The server is now under siege...
+Transactions:                    100 hits
+Availability:                 100.00 %
+Elapsed time:                   0.24 secs
+Data transferred:               0.00 MB
+Response time:                  0.04 secs
+Transaction rate:             416.67 trans/sec
+Throughput:                     0.01 MB/sec
+Concurrency:                   18.08
+Successful transactions:         100
+Failed transactions:               0
+Longest transaction:            0.06
+Shortest transaction:           0.03
+```
